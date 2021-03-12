@@ -10,16 +10,18 @@ import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
 
-    private var chuckNorrisFact: MutableLiveData<ChuckNorrisFact> = MutableLiveData()
+    var chuckNorrisFactLiveData: MutableLiveData<ChuckNorrisFact> = MutableLiveData()
 
-    fun getChuckNorrisFactLiveData(): MutableLiveData<ChuckNorrisFact>{
-
+    fun setChuckNorrisFact(){
         var fact = ChuckNorrisFact()
         viewModelScope.launch(Dispatchers.IO) {
             fact = ChuckNorrisFactRequest.getChuckNorrisFact()
         }
 
-        chuckNorrisFact.value = fact
-        return chuckNorrisFact
+        chuckNorrisFactLiveData.value = fact
+
+
     }
+
+
 }

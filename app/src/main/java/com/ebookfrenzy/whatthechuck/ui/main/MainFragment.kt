@@ -10,9 +10,6 @@ import androidx.lifecycle.Observer
 import com.ebookfrenzy.whatthechuck.ChuckNorrisFact
 import com.ebookfrenzy.whatthechuck.R
 import kotlinx.android.synthetic.main.main_fragment.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 
 class MainFragment : Fragment() {
 
@@ -34,17 +31,13 @@ class MainFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         val chuckNorrisFactObserver = Observer<ChuckNorrisFact> {
-            chuckNorrisFact = it
+            message.text = it.value
         }
 
-        viewModel.getChuckNorrisFactLiveData().observe(viewLifecycleOwner, chuckNorrisFactObserver)
+        viewModel.chuckNorrisFactLiveData.observe(viewLifecycleOwner, chuckNorrisFactObserver)
 
         chuckButton.setOnClickListener {
-
-             message.text = chuckNorrisFact.message
-
+            viewModel.setChuckNorrisFact()
         }
-
     }
-
 }
