@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">WhatTheChuck</string>
+    <string name="chuck_it">Chuck It!</string>
+    <string name="chuck_quote">Chuck Quote</string>
 </resources>
