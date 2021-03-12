@@ -10,6 +10,9 @@ import androidx.lifecycle.Observer
 import com.ebookfrenzy.whatthechuck.ChuckNorrisFact
 import com.ebookfrenzy.whatthechuck.R
 import kotlinx.android.synthetic.main.main_fragment.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 class MainFragment : Fragment() {
 
@@ -37,7 +40,9 @@ class MainFragment : Fragment() {
         viewModel.chuckNorrisFactLiveData.observe(viewLifecycleOwner, chuckNorrisFactObserver)
 
         chuckButton.setOnClickListener {
-            viewModel.setChuckNorrisFact()
+            GlobalScope.launch {
+                viewModel.setChuckNorrisFact()
+            }
         }
     }
 }
