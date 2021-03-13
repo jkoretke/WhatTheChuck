@@ -7,9 +7,9 @@ import java.io.InputStreamReader
 import java.net.URL
 import javax.net.ssl.HttpsURLConnection
 
-class HTTPClient() {
+class HTTPClient(val url: URL) {
 
-    val url = URL("https://api.chucknorris.io/jokes/random")
+//    val url = URL("https://api.chucknorris.io/jokes/random")
     fun getJson(): String {
 
         val con = url.openConnection() as HttpsURLConnection

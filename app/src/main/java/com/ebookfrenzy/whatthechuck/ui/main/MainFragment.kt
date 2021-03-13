@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import com.bumptech.glide.Glide
 import com.ebookfrenzy.whatthechuck.ChuckNorrisFact
 import com.ebookfrenzy.whatthechuck.R
 import kotlinx.android.synthetic.main.main_fragment.*
@@ -35,6 +36,7 @@ class MainFragment : Fragment() {
 
         val chuckNorrisFactObserver = Observer<ChuckNorrisFact> {
             message.text = it.value
+
         }
 
         viewModel.chuckNorrisFactLiveData.observe(viewLifecycleOwner, chuckNorrisFactObserver)
