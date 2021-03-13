@@ -27,14 +27,17 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
+        progressBar.visibility = View.GONE
 
         val chuckNorrisFactObserver = Observer<ChuckNorrisFact> {
+            progressBar.visibility = View.GONE
             message.text = it.value
         }
 
         viewModel.chuckNorrisFactLiveData.observe(viewLifecycleOwner, chuckNorrisFactObserver)
 
         chuckButton.setOnClickListener {
+            progressBar.visibility = View.VISIBLE
             viewModel.getChuckNorrisFact()
         }
     }

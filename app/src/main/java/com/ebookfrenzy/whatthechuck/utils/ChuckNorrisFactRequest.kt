@@ -6,14 +6,13 @@ import java.net.URL
 
 object ChuckNorrisFactRequest {
 
-    private const val baseURL = "https://api.chucknorris.io/jokes/random?category=dev"
+    private const val BASE_URL = "https://api.chucknorris.io/jokes/random?category=dev"
 
     fun getChuckNorrisFactFromAPI(): ChuckNorrisFact {
 
-        val url = URL(baseURL)
+        val url = URL(BASE_URL)
         val httpClient = HTTPClient(url)
         val fullJson = httpClient.getJson()
-
         val gson = Gson()
         return gson.fromJson(fullJson, ChuckNorrisFact::class.java)
     }
