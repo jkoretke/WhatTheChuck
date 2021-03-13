@@ -1,23 +1,21 @@
 package com.ebookfrenzy.whatthechuck.utils
 
 import android.util.Log
-import kotlinx.coroutines.GlobalScope
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.URL
 import javax.net.ssl.HttpsURLConnection
 
-class HTTPClient(val url: URL) {
+class HTTPClient(private val url: URL) {
 
-//    val url = URL("https://api.chucknorris.io/jokes/random")
     fun getJson(): String {
 
         val con = url.openConnection() as HttpsURLConnection
         con.requestMethod = "GET"
 
-        val responsCode = con.responseCode
-        if(responsCode != 200){
-            Log.d(this.javaClass.simpleName, "Invalid API call. Response code: $responsCode")
+        val responseCode = con.responseCode
+        if(responseCode != 200){
+            Log.d(this.javaClass.simpleName, "Invalid API call. Response code: $responseCode")
         }
 
         val readIn = BufferedReader(
